@@ -5,7 +5,8 @@
     "SUPERM ALIANCA": "Mercado",
     "EC SHELLBOX": "Combustível",
     "POSTO IPIRANGA": "Combustível",
-    "PETZ LOUVEIRA": "Pet"
+    "PETZ LOUVEIRA": "Pet",
+    "MEDICATUS FARMACIA": "Farmácia"
   },
   "transactions": [
     {
@@ -15,7 +16,7 @@
       "value": 84.7,
       "cartao": "Inter",
       "id": 0,
-      "cat": null
+      "cat": "Farmácia"
     },
     {
       "date": "18/08",
