@@ -148,8 +148,23 @@
 
 <header>
   <div class="eyebrow">Prévia · dados de teste</div>
-  <h1 id="pageTitle">Lançamentos</h1>
-  <div class="sub" id="pageSub">Inter e Santander</div>
+  <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+    <div>
+      <h1 id="pageTitle">Lançamentos</h1>
+      <div class="sub" id="pageSub">Inter e Santander</div>
+    </div>
+    <button id="backupToggle" style="background:none; border:1px solid var(--line); color:var(--text-dim); border-radius:20px; padding:6px 12px; font-size:11px; font-weight:600; cursor:pointer; white-space:nowrap;">⚙️ Backup</button>
+  </div>
+  <div id="backupPanel" style="display:none; margin-top:14px; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px;">
+    <p class="section-title" style="margin:0 0 8px;">Backup automático no GitHub</p>
+    <div class="chip-new" style="margin-top:0;">
+      <input type="text" id="githubTokenInput" placeholder="Personal Access Token do GitHub">
+      <button id="saveTokenBtn">Salvar</button>
+    </div>
+    <div class="paste-hint" style="margin-top:8px;">O token fica salvo só neste navegador. Ele é usado pra ler/gravar o arquivo <code>dados.json</code> no repositório <code>Mihailoff23/APP-Fatura-Credito</code>.</div>
+    <div class="status-msg" id="backupStatus" style="margin-top:10px;"></div>
+    <button id="removeTokenBtn" style="display:none; margin-top:8px; background:none; border:none; color:var(--danger); font-size:11.5px; text-decoration:underline; cursor:pointer; padding:0;">remover token deste navegador</button>
+  </div>
 </header>
 
 <!-- ===================== VIEW: LANÇAMENTOS ===================== -->
@@ -299,6 +314,135 @@ let selectionMode = false;
 let selectedIds = new Set();
 let openChartCategory = null;
 
+// ---------- backup no GitHub ----------
+const GH_OWNER = "Mihailoff23";
+const GH_REPO = "APP-Fatura-Credito";
+const GH_BRANCH = "main";
+const GH_PATH = "dados.json";
+let ghSha = null;
+let ghSaveTimer = null;
+let ghSyncing = false;
+
+function ghToken(){ return localStorage.getItem("gh_token") || ""; }
+
+function utf8ToBase64(str){
+  const bytes = new TextEncoder().encode(str);
+  let binary = "";
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+function base64ToUtf8(b64){
+  const binary = atob(b64.replace(/\n/g, ""));
+  const bytes = new Uint8Array(binary.length);
+  for(let i=0;i<binary.length;i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+function setBackupStatus(msg, isError){
+  const el = document.getElementById('backupStatus');
+  if(!el) return;
+  el.textContent = msg;
+  el.classList.toggle('error', !!isError);
+}
+
+async function githubFetchFile(){
+  const token = ghToken();
+  if(!token) return null;
+  const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}?ref=${GH_BRANCH}&_=${Date.now()}`;
+  const res = await fetch(url, {
+    headers: { "Authorization": `token ${token}`, "Accept": "application/vnd.github+json" }
+  });
+  if(res.status === 404) return { notFound:true };
+  if(!res.ok) throw new Error(`GitHub GET ${res.status}`);
+  const data = await res.json();
+  ghSha = data.sha;
+  const json = base64ToUtf8(data.content);
+  return JSON.parse(json);
+}
+
+async function githubSaveFile(){
+  const token = ghToken();
+  if(!token) return;
+  ghSyncing = true;
+  setBackupStatus("Sincronizando…");
+  try{
+    const payload = { learned: LEARNED, transactions };
+    const content = utf8ToBase64(JSON.stringify(payload, null, 2));
+    const url = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
+    const body = {
+      message: `Atualiza dados - ${new Date().toISOString()}`,
+      content,
+      branch: GH_BRANCH,
+    };
+    if(ghSha) body.sha = ghSha;
+    const res = await fetch(url, {
+      method: "PUT",
+      headers: { "Authorization": `token ${token}`, "Accept": "application/vnd.github+json" },
+      body: JSON.stringify(body)
+    });
+    if(!res.ok){
+      const errBody = await res.json().catch(()=>({}));
+      throw new Error(errBody.message || `GitHub PUT ${res.status}`);
+    }
+    const data = await res.json();
+    ghSha = data.content.sha;
+    const now = new Date();
+    setBackupStatus(`Sincronizado às ${now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'})}`);
+  }catch(e){
+    console.error("backup falhou", e);
+    setBackupStatus("Falha ao sincronizar: " + e.message, true);
+  }finally{
+    ghSyncing = false;
+  }
+}
+
+function scheduleGithubSave(){
+  if(!ghToken()) return;
+  clearTimeout(ghSaveTimer);
+  ghSaveTimer = setTimeout(githubSaveFile, 1500);
+}
+
+document.getElementById('backupToggle').addEventListener('click', ()=>{
+  const panel = document.getElementById('backupPanel');
+  panel.style.display = panel.style.display === "none" ? "block" : "none";
+  document.getElementById('removeTokenBtn').style.display = ghToken() ? "block" : "none";
+  if(ghToken()) document.getElementById('githubTokenInput').placeholder = "Token já salvo (deixe em branco pra manter)";
+});
+document.getElementById('saveTokenBtn').addEventListener('click', async ()=>{
+  const input = document.getElementById('githubTokenInput');
+  const val = input.value.trim();
+  if(!val) return;
+  localStorage.setItem("gh_token", val);
+  input.value = "";
+  document.getElementById('removeTokenBtn').style.display = "block";
+  setBackupStatus("Testando conexão…");
+  try{
+    const remote = await githubFetchFile();
+    if(remote && !remote.notFound){
+      if(remote.learned) LEARNED = {...LEARNED, ...remote.learned};
+      if(remote.transactions && remote.transactions.length){
+        transactions = remote.transactions;
+        existingKeys = new Set(transactions.map(txKey));
+      }
+      saveLearnedLocal(); saveTransactionsLocal();
+      setBackupStatus("Conectado! Dados carregados do GitHub.");
+      render();
+    }else{
+      setBackupStatus("Conectado! Ainda não existe dados.json — será criado no próximo lançamento.");
+      await githubSaveFile();
+    }
+  }catch(e){
+    console.error(e);
+    setBackupStatus("Token inválido ou sem permissão: " + e.message, true);
+  }
+});
+document.getElementById('removeTokenBtn').addEventListener('click', ()=>{
+  if(!confirm("Remover o token salvo neste navegador? O backup automático vai parar de funcionar aqui.")) return;
+  localStorage.removeItem("gh_token");
+  document.getElementById('removeTokenBtn').style.display = "none";
+  document.getElementById('githubTokenInput').placeholder = "Personal Access Token do GitHub";
+  setBackupStatus("Token removido. Os dados continuam salvos localmente e no GitHub.");
+});
+
 async function loadLearned(){
   try{
     const saved = localStorage.getItem("categorias-aprendidas");
@@ -311,10 +455,35 @@ async function loadLearned(){
       if(parsed.length){ transactions = parsed; existingKeys = new Set(transactions.map(txKey)); }
     }
   }catch(e){}
+
+  if(ghToken()){
+    document.getElementById('removeTokenBtn').style.display = "block";
+    try{
+      setBackupStatus("Carregando do GitHub…");
+      const remote = await githubFetchFile();
+      if(remote && !remote.notFound){
+        if(remote.learned) LEARNED = {...LEARNED, ...remote.learned};
+        if(remote.transactions && remote.transactions.length){
+          transactions = remote.transactions;
+          existingKeys = new Set(transactions.map(txKey));
+        }
+        saveLearnedLocal(); saveTransactionsLocal();
+        setBackupStatus("Dados carregados do GitHub.");
+      }else{
+        setBackupStatus("Conectado. Arquivo dados.json ainda não existe no repositório.");
+      }
+    }catch(e){
+      console.error(e);
+      setBackupStatus("Não deu pra sincronizar agora (offline?). Usando dados locais.", true);
+    }
+  }
+
   render();
 }
-function saveLearned(){ try{ localStorage.setItem("categorias-aprendidas", JSON.stringify(LEARNED)); }catch(e){ console.error("storage falhou", e); } }
-function saveTransactions(){ try{ localStorage.setItem("lancamentos-salvos", JSON.stringify(transactions)); }catch(e){ console.error("storage falhou", e); } }
+function saveLearnedLocal(){ try{ localStorage.setItem("categorias-aprendidas", JSON.stringify(LEARNED)); }catch(e){ console.error("storage falhou", e); } }
+function saveTransactionsLocal(){ try{ localStorage.setItem("lancamentos-salvos", JSON.stringify(transactions)); }catch(e){ console.error("storage falhou", e); } }
+function saveLearned(){ saveLearnedLocal(); scheduleGithubSave(); }
+function saveTransactions(){ saveTransactionsLocal(); scheduleGithubSave(); }
 
 function categoryFor(desc){
   const key = normKey(desc);
