@@ -20,7 +20,8 @@
     "ZIG CERVEJARIA TAB AVALINHOS": "Lazer",
     "BOA SUPERMERCADOS JUNDIAI": "Mercado",
     "AGRO SNOOP LOUVEIRA": "Pet",
-    "JDHS COMERCIO DE VEST JUNDIAI": "Compras"
+    "JDHS COMERCIO DE VEST JUNDIAI": "Compras",
+    "ZEMOREIRAGAS LOUVEIRA": "Fixos"
   },
   "transactions": [
     {
@@ -246,7 +247,7 @@
       "value": 63,
       "cartao": "Inter",
       "id": 48,
-      "cat": null
+      "cat": "Fixos"
     },
     {
       "date": "07/08",
