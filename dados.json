@@ -14,7 +14,8 @@
     "PG ZE DELIVERY SAO PAULO": "Lazer",
     "IFD QUEILA DA JUNDIAI": "Lazer",
     "MEGA SHOPP LOUVEIRA": "Compras",
-    "IFD RAILSON S LOUVEIRA": "Lazer"
+    "IFD RAILSON S LOUVEIRA": "Lazer",
+    "IFD IFOOD CLUB OSASCO": "Lazer"
   },
   "transactions": [
     {
@@ -168,7 +169,7 @@
       "value": 7.95,
       "cartao": "Inter",
       "id": 32,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "10/08",
