@@ -19,7 +19,8 @@
     "PAGAMENTO ON LINE": "Cartão",
     "ZIG CERVEJARIA TAB AVALINHOS": "Lazer",
     "BOA SUPERMERCADOS JUNDIAI": "Mercado",
-    "AGRO SNOOP LOUVEIRA": "Pet"
+    "AGRO SNOOP LOUVEIRA": "Pet",
+    "JDHS COMERCIO DE VEST JUNDIAI": "Compras"
   },
   "transactions": [
     {
@@ -236,7 +237,7 @@
       "value": 39.99,
       "cartao": "Inter",
       "id": 46,
-      "cat": null
+      "cat": "Compras"
     },
     {
       "date": "08/08",
