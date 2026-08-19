@@ -364,6 +364,24 @@
       "cartao": "Inter",
       "id": 74,
       "cat": "Cartão"
+    },
+    {
+      "date": "19/08",
+      "dateISO": "2026-08-19",
+      "desc": "SUPERMERCADO LOUVEIRA",
+      "value": 69.7,
+      "cartao": "Inter",
+      "id": 37,
+      "cat": "Mercado"
+    },
+    {
+      "date": "16/08",
+      "dateISO": "2026-08-16",
+      "desc": "AUTO BAN BRA JUNDIAI",
+      "value": 14.3,
+      "cartao": "Inter",
+      "id": 39,
+      "cat": null
     }
   ]
 }
