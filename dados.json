@@ -12,7 +12,8 @@
     "BAD BONE CAMPINAS": "Lazer",
     "AUTO BAN JUNDIAI": "Lazer",
     "PG ZE DELIVERY SAO PAULO": "Lazer",
-    "IFD QUEILA DA JUNDIAI": "Lazer"
+    "IFD QUEILA DA JUNDIAI": "Lazer",
+    "MEGA SHOPP LOUVEIRA": "Compras"
   },
   "transactions": [
     {
@@ -94,7 +95,7 @@
       "value": 60,
       "cartao": "Inter",
       "id": 16,
-      "cat": null
+      "cat": "Compras"
     },
     {
       "date": "14/08",
