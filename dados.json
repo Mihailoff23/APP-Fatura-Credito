@@ -24,7 +24,11 @@
     "ZEMOREIRAGAS LOUVEIRA": "Fixos",
     "DROGAL CAPIVARI": "Farmácia",
     "A FAZENDA AGROPECUARIA LOUVEIRA": "Pet",
-    "MARTINICHI LOUVEIRA": "Lazer"
+    "MARTINICHI LOUVEIRA": "Lazer",
+    "IOF ADICIONAL DB PF": "Cartão",
+    "IOF DIARIO DB PF": "Cartão",
+    "JUROS PROJETADOS": "Cartão",
+    "ENCARGOS ROTATIVO": "Cartão"
   },
   "transactions": [
     {
@@ -304,7 +308,7 @@
       "value": 1.15,
       "cartao": "Inter",
       "id": 60,
-      "cat": null
+      "cat": "Cartão"
     },
     {
       "date": "03/08",
@@ -313,7 +317,7 @@
       "value": 1.32,
       "cartao": "Inter",
       "id": 62,
-      "cat": null
+      "cat": "Cartão"
     },
     {
       "date": "03/08",
@@ -322,7 +326,7 @@
       "value": 2.18,
       "cartao": "Inter",
       "id": 64,
-      "cat": null
+      "cat": "Cartão"
     },
     {
       "date": "03/08",
@@ -331,7 +335,7 @@
       "value": 9.03,
       "cartao": "Inter",
       "id": 66,
-      "cat": null
+      "cat": "Cartão"
     },
     {
       "date": "03/08",
@@ -340,7 +344,7 @@
       "value": 10.85,
       "cartao": "Inter",
       "id": 68,
-      "cat": null
+      "cat": "Cartão"
     },
     {
       "date": "03/08",
@@ -349,7 +353,7 @@
       "value": 44.9,
       "cartao": "Inter",
       "id": 70,
-      "cat": null
+      "cat": "Cartão"
     },
     {
       "date": "03/08",
@@ -358,7 +362,7 @@
       "value": 0.15,
       "cartao": "Inter",
       "id": 72,
-      "cat": null
+      "cat": "Cartão"
     },
     {
       "date": "03/08",
