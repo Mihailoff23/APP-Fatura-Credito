@@ -29,7 +29,8 @@
     "IOF DIARIO DB PF": "Cartão",
     "JUROS PROJETADOS": "Cartão",
     "ENCARGOS ROTATIVO": "Cartão",
-    "ROTATIVO SALDO FINANCIADO": "Cartão"
+    "ROTATIVO SALDO FINANCIADO": "Cartão",
+    "AUTO BAN BRA JUNDIAI": "Lazer"
   },
   "transactions": [
     {
@@ -381,7 +382,7 @@
       "value": 14.3,
       "cartao": "Inter",
       "id": 39,
-      "cat": null
+      "cat": "Lazer"
     }
   ]
 }
