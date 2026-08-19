@@ -22,7 +22,8 @@
     "AGRO SNOOP LOUVEIRA": "Pet",
     "JDHS COMERCIO DE VEST JUNDIAI": "Compras",
     "ZEMOREIRAGAS LOUVEIRA": "Fixos",
-    "DROGAL CAPIVARI": "Farmácia"
+    "DROGAL CAPIVARI": "Farmácia",
+    "A FAZENDA AGROPECUARIA LOUVEIRA": "Pet"
   },
   "transactions": [
     {
@@ -275,7 +276,7 @@
       "value": 19.9,
       "cartao": "Inter",
       "id": 54,
-      "cat": null
+      "cat": "Pet"
     },
     {
       "date": "05/08",
