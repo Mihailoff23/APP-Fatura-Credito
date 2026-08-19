@@ -21,7 +21,8 @@
     "BOA SUPERMERCADOS JUNDIAI": "Mercado",
     "AGRO SNOOP LOUVEIRA": "Pet",
     "JDHS COMERCIO DE VEST JUNDIAI": "Compras",
-    "ZEMOREIRAGAS LOUVEIRA": "Fixos"
+    "ZEMOREIRAGAS LOUVEIRA": "Fixos",
+    "DROGAL CAPIVARI": "Farmácia"
   },
   "transactions": [
     {
@@ -256,7 +257,7 @@
       "value": 47.25,
       "cartao": "Inter",
       "id": 50,
-      "cat": null
+      "cat": "Farmácia"
     },
     {
       "date": "07/08",
