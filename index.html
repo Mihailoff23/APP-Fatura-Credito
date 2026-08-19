@@ -415,8 +415,15 @@ document.getElementById('saveTokenBtn').addEventListener('click', async ()=>{
   input.value = "";
   document.getElementById('removeTokenBtn').style.display = "block";
   setBackupStatus("Testando conexão…");
+  let remote;
   try{
-    const remote = await githubFetchFile();
+    remote = await githubFetchFile();
+  }catch(e){
+    console.error(e);
+    setBackupStatus("Token inválido ou sem permissão: " + e.message, true);
+    return;
+  }
+  try{
     if(remote && !remote.notFound){
       if(remote.learned) LEARNED = {...LEARNED, ...remote.learned};
       if(remote.transactions && remote.transactions.length){
@@ -432,7 +439,7 @@ document.getElementById('saveTokenBtn').addEventListener('click', async ()=>{
     }
   }catch(e){
     console.error(e);
-    setBackupStatus("Token inválido ou sem permissão: " + e.message, true);
+    setBackupStatus("Conectado, mas houve um erro ao exibir os dados: " + e.message, true);
   }
 });
 document.getElementById('removeTokenBtn').addEventListener('click', ()=>{
@@ -461,16 +468,21 @@ async function loadLearned(){
     try{
       setBackupStatus("Carregando do GitHub…");
       const remote = await githubFetchFile();
-      if(remote && !remote.notFound){
-        if(remote.learned) LEARNED = {...LEARNED, ...remote.learned};
-        if(remote.transactions && remote.transactions.length){
-          transactions = remote.transactions;
-          existingKeys = new Set(transactions.map(txKey));
+      try{
+        if(remote && !remote.notFound){
+          if(remote.learned) LEARNED = {...LEARNED, ...remote.learned};
+          if(remote.transactions && remote.transactions.length){
+            transactions = remote.transactions;
+            existingKeys = new Set(transactions.map(txKey));
+          }
+          saveLearnedLocal(); saveTransactionsLocal();
+          setBackupStatus("Dados carregados do GitHub.");
+        }else{
+          setBackupStatus("Conectado. Arquivo dados.json ainda não existe no repositório.");
         }
-        saveLearnedLocal(); saveTransactionsLocal();
-        setBackupStatus("Dados carregados do GitHub.");
-      }else{
-        setBackupStatus("Conectado. Arquivo dados.json ainda não existe no repositório.");
+      }catch(e2){
+        console.error(e2);
+        setBackupStatus("Dados carregados, mas houve um erro ao exibir: " + e2.message, true);
       }
     }catch(e){
       console.error(e);
@@ -736,6 +748,9 @@ function render(){
   const labels = sorted.map(s=>s[0]);
   const values = sorted.map(s=>s[1]);
   const colors = labels.map(colorFor);
+  if(typeof Chart === 'undefined'){
+    console.warn("Chart.js ainda não carregou, pulando o gráfico nesta renderização.");
+  }else{
   if(pieChart) pieChart.destroy();
   if(labels.length){
     pieChart = new Chart(ctx, {
@@ -743,6 +758,7 @@ function render(){
       data: { labels, datasets:[{ data: values, backgroundColor: colors, borderWidth:0 }] },
       options: { cutout: '62%', plugins:{ legend:{ position:'bottom', labels:{ color:'#eef0f4', font:{family:'Inter', size:11}, boxWidth:10, padding:14 } } } }
     });
+  }
   }
 }
 
