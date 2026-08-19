@@ -17,7 +17,8 @@
     "IFD RAILSON S LOUVEIRA": "Lazer",
     "IFD IFOOD CLUB OSASCO": "Lazer",
     "PAGAMENTO ON LINE": "Cartão",
-    "ZIG CERVEJARIA TAB AVALINHOS": "Lazer"
+    "ZIG CERVEJARIA TAB AVALINHOS": "Lazer",
+    "BOA SUPERMERCADOS JUNDIAI": "Mercado"
   },
   "transactions": [
     {
@@ -216,7 +217,7 @@
       "value": 22.09,
       "cartao": "Inter",
       "id": 42,
-      "cat": null
+      "cat": "Mercado"
     },
     {
       "date": "08/08",
