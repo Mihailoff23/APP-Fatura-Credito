@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatura · Categorizador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#101116; --surface:#181a21; --surface-2:#20232c; --line:#2a2d38;
+    --text:#eef0f4; --text-dim:#9aa0ae; --gold:#e8b34b;
+    --compras:#56ccf2; --mercado:#6fcf97; --combustivel:#f2994a;
+    --pet:#f28fb0; --lazer:#f2c94c; --outros:#7d8494; --danger:#eb5757;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; padding-bottom:86px;}
+  header{padding:24px 20px 16px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg); z-index:20;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:6px;}
+  h1{font-family:'Sora',sans-serif; font-size:24px; margin:0; font-weight:700; letter-spacing:-.01em;}
+  .sub{color:var(--text-dim); font-size:12.5px; margin-top:4px;}
+
+  section{padding:20px;}
+  .section-title{font-family:'Sora',sans-serif; font-size:13px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:.08em; margin:0 0 12px;}
+
+  .total-row .amount{font-family:'Sora',sans-serif; font-size:32px; font-weight:800; font-variant-numeric: tabular-nums;}
+  .total-row .count{color:var(--text-dim); font-size:12.5px; margin-top:2px;}
+
+  .filter-row{display:flex; gap:8px; margin:14px 0 4px; flex-wrap:wrap;}
+  .seg{background:var(--surface); border:1px solid var(--line); color:var(--text-dim); padding:7px 14px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer;}
+  .seg.active{background:var(--gold); color:#141414; border-color:var(--gold);}
+  select.month-select{
+    background:var(--surface); border:1px solid var(--line); color:var(--text);
+    padding:9px 14px; border-radius:20px; font-size:13px; font-weight:600; font-family:'Inter',sans-serif;
+  }
+
+  .strip{display:flex; height:12px; border-radius:8px; overflow:hidden; margin:14px 0; background:var(--surface-2);}
+  .strip div{height:100%;}
+
+  .top-cat-card{
+    background:linear-gradient(135deg, #201a10, var(--surface)); border:1px solid var(--gold);
+    border-radius:14px; padding:16px; margin-top:14px; display:flex; align-items:center; gap:12px;
+  }
+  .top-cat-card .dot{width:14px; height:14px; border-radius:50%; flex-shrink:0;}
+  .top-cat-card .label{font-size:11px; color:var(--gold); text-transform:uppercase; letter-spacing:.06em; font-weight:700;}
+  .top-cat-card .name{font-family:'Sora',sans-serif; font-size:17px; font-weight:700; margin-top:2px;}
+  .top-cat-card .vals{margin-left:auto; text-align:right;}
+  .top-cat-card .vals .v{font-weight:700; font-size:15px;}
+  .top-cat-card .vals .p{color:var(--text-dim); font-size:11.5px;}
+
+  .cat-list{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
+  .cat-card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:14px 16px;}
+  .cat-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
+  .cat-name{display:flex; align-items:center; gap:10px; font-weight:600; font-size:14px;}
+  .dot{width:10px; height:10px; border-radius:50%; flex-shrink:0;}
+  .cat-vals{text-align:right; font-variant-numeric: tabular-nums;}
+  .cat-vals .v{font-weight:700; font-size:14.5px;}
+  .cat-vals .p{color:var(--text-dim); font-size:11.5px;}
+  .mini-bar{height:6px; border-radius:4px; background:var(--surface-2); overflow:hidden;}
+  .mini-bar div{height:100%; border-radius:4px;}
+
+  canvas#pie{max-width:260px; margin:16px auto 0; display:block;}
+
+  .pending-card{background:var(--surface); border:1px solid var(--gold); border-radius:14px; padding:14px 16px; margin-bottom:10px;}
+  .pending-head{display:flex; justify-content:space-between; margin-bottom:2px;}
+  .pending-desc{font-weight:600; font-size:14px;}
+  .pending-meta{color:var(--text-dim); font-size:11.5px; margin-bottom:10px;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{background:var(--surface-2); border:1px solid var(--line); color:var(--text); border-radius:20px; padding:7px 13px; font-size:12.5px; font-weight:500; cursor:pointer;}
+  .chip:active{transform:scale(.96);}
+  .chip-new{display:flex; gap:6px; margin-top:8px;}
+  .chip-new input{flex:1; background:var(--bg); border:1px solid var(--line); border-radius:20px; color:var(--text); padding:7px 13px; font-size:13px; font-family:'Inter',sans-serif;}
+  .chip-new button{background:var(--gold); color:#141414; border:none; border-radius:20px; padding:7px 14px; font-weight:700; font-size:13px;}
+
+  /* meses acordeão */
+  .month-group{border:1px solid var(--line); border-radius:14px; margin-bottom:12px; overflow:hidden; background:var(--surface);}
+  .month-head{display:flex; justify-content:space-between; align-items:center; padding:14px 16px; cursor:pointer;}
+  .month-head .m-name{font-family:'Sora',sans-serif; font-weight:700; font-size:14.5px; display:flex; align-items:center; gap:8px;}
+  .month-head .m-name .tag-atual{font-size:10px; background:var(--gold); color:#141414; padding:2px 8px; border-radius:8px; font-weight:700;}
+  .month-head .m-right{display:flex; align-items:center; gap:10px;}
+  .month-head .m-total{font-weight:700; font-size:14px; font-variant-numeric: tabular-nums;}
+  .month-head .chevron{transition:transform .15s; color:var(--text-dim);}
+  .month-group.open .chevron{transform:rotate(180deg);}
+  .month-body{max-height:0; overflow:hidden; transition:max-height .2s ease;}
+  .month-group.open .month-body{max-height:none;}
+  .month-body-inner{padding:0 16px 6px;}
+
+  .tx{display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-top:1px solid var(--line); gap:10px;}
+  .tx-desc{font-size:13.5px; font-weight:500;}
+  .tx-meta{color:var(--text-dim); font-size:11px; margin-top:2px; display:flex; gap:6px; align-items:center;}
+  .tx-cat{font-size:10.5px; color:var(--text-dim); border:1px solid var(--line); border-radius:8px; padding:1px 7px;}
+  .tx-card-tag{font-size:10.5px; border-radius:8px; padding:1px 7px;}
+  .tx-card-tag.inter{background:#ff8c0022; color:#ff8c00;}
+  .tx-card-tag.santander{background:#ec000022; color:#ff5f5f;}
+  .tx-right{text-align:right; flex-shrink:0;}
+  .tx-val{font-variant-numeric: tabular-nums; font-weight:600; font-size:14px;}
+  .tx-actions{display:flex; gap:10px; margin-top:2px;}
+  .tx-edit, .tx-delete{background:none; border:none; font-size:11px; text-decoration:underline; padding:2px 0; cursor:pointer;}
+  .tx-edit{color:var(--text-dim);}
+  .tx-delete{color:var(--danger);}
+  .tx-checkbox{width:18px; height:18px; accent-color:var(--gold); flex-shrink:0; display:none;}
+  .selection-mode .tx-checkbox{display:block;}
+  .selection-mode .tx{align-items:flex-start;}
+  .tx-left-wrap{display:flex; gap:10px; align-items:flex-start; flex:1;}
+
+  .selection-bar{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:8px; flex-wrap:wrap;}
+  .selection-bar .left-actions{display:flex; gap:8px;}
+  .btn-select{background:var(--surface-2); border:1px solid var(--line); color:var(--text); border-radius:20px; padding:7px 14px; font-size:12.5px; font-weight:600; cursor:pointer;}
+  .btn-select.active{background:var(--gold); color:#141414; border-color:var(--gold);}
+  .btn-delete-selected{background:var(--danger); color:#fff; border:none; border-radius:20px; padding:7px 14px; font-size:12.5px; font-weight:700; cursor:pointer;}
+  .btn-delete-selected:disabled{opacity:.4;}
+
+  .card-choice{display:flex; gap:8px; justify-content:center; margin-bottom:10px;}
+  .status-msg{font-size:12.5px; color:var(--gold); margin-top:10px;}
+  .status-msg.error{color:var(--danger);}
+  .toast{background:var(--surface-2); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:12.5px; color:var(--text-dim); margin-top:10px;}
+
+  textarea{width:100%; min-height:90px; background:var(--surface); color:var(--text); border:1px solid var(--line); border-radius:12px; padding:12px; font-family:'Inter',sans-serif; font-size:13px; resize:vertical;}
+  .paste-hint{color:var(--text-dim); font-size:11.5px; margin-top:6px; line-height:1.5;}
+  .paste-btn{margin-top:10px; width:100%; background:var(--surface-2); border:1px solid var(--line); color:var(--text); padding:12px; border-radius:12px; font-weight:600; font-size:14px;}
+  code{color:var(--gold); font-size:11.5px;}
+  details summary{color:var(--text-dim); font-size:12.5px; cursor:pointer; margin-top:16px;}
+
+  nav.tabbar{position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:1px solid var(--line); display:flex; z-index:30; padding-bottom: env(safe-area-inset-bottom);}
+  nav.tabbar button{flex:1; background:none; border:none; color:var(--text-dim); padding:14px 0 10px; font-family:'Inter',sans-serif; font-size:11.5px; font-weight:600; display:flex; flex-direction:column; align-items:center; gap:4px;}
+  nav.tabbar button.active{color:var(--gold);}
+  nav.tabbar svg{width:20px; height:20px;}
+
+  .view{display:none;}
+  .view.active{display:block;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Prévia · dados de teste</div>
+  <h1 id="pageTitle">Lançamentos</h1>
+  <div class="sub" id="pageSub">Inter e Santander</div>
+</header>
+
+<!-- ===================== VIEW: LANÇAMENTOS ===================== -->
+<div class="view active" id="view-lancamentos">
+
+  <section>
+    <div class="total-row">
+      <div class="amount" id="totalAmountTx">R$ 0,00</div>
+      <div class="count" id="totalCountTx">0 lançamentos</div>
+    </div>
+  </section>
+
+  <section id="pending-section">
+    <p class="section-title">Falta categorizar</p>
+    <div id="pendingList"></div>
+  </section>
+
+  <section>
+    <p class="section-title">Adicionar lançamentos</p>
+    <div class="card-choice">
+      <button class="seg active" data-pastecard="Inter">Inter</button>
+      <button class="seg" data-pastecard="Santander">Santander</button>
+    </div>
+    <textarea id="pasteBox" placeholder="13/08 | IFD RAILSON S LOUVEIRA | 102,68"></textarea>
+    <div class="paste-hint">Um lançamento por linha: <code>data | descrição | valor</code>. Cole o texto que eu transcrever a partir do print da sua fatura.</div>
+    <button class="paste-btn" id="pasteBtn">Adicionar lançamentos</button>
+  </section>
+
+  <section>
+    <p class="section-title">Histórico por mês</p>
+    <div class="selection-bar">
+      <div class="left-actions">
+        <button class="btn-select" id="toggleSelectMode">Selecionar</button>
+        <button class="btn-select" id="selectAllBtn" style="display:none">Marcar todos</button>
+      </div>
+      <button class="btn-delete-selected" id="deleteSelectedBtn" style="display:none" disabled>Excluir (0)</button>
+    </div>
+    <div id="monthsList"></div>
+  </section>
+</div>
+
+<!-- ===================== VIEW: GRÁFICOS ===================== -->
+<div class="view" id="view-graficos">
+  <section>
+    <div class="filter-row">
+      <select class="month-select" id="monthFilter"></select>
+    </div>
+    <div class="filter-row" id="chartCardFilter">
+      <button class="seg active" data-filter="Todos">Ambos</button>
+      <button class="seg" data-filter="Inter">Inter</button>
+      <button class="seg" data-filter="Santander">Santander</button>
+    </div>
+    <div class="total-row" style="margin-top:14px;">
+      <div class="amount" id="totalAmountChart">R$ 0,00</div>
+      <div class="count" id="totalCountChart">0 lançamentos</div>
+    </div>
+    <div class="strip" id="strip"></div>
+    <div id="topCatWrap"></div>
+    <canvas id="pie"></canvas>
+  </section>
+
+  <section>
+    <p class="section-title">Por categoria</p>
+    <div class="cat-list" id="catList"></div>
+  </section>
+</div>
+
+<nav class="tabbar">
+  <button class="active" data-tab="lancamentos">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+    Lançamentos
+  </button>
+  <button data-tab="graficos">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
+    Gráficos
+  </button>
+</nav>
+
+<script>
+// ---------- dados transcritos das duas telas (cartão Inter) ----------
+const RAW_TX = [
+  {dateISO:"2026-08-16", date:"16/08", desc:"AUTO BAN", value:14.30, cartao:"Inter"},
+  {dateISO:"2026-08-16", date:"16/08", desc:"BAD BONE", value:152.17, cartao:"Inter"},
+  {dateISO:"2026-08-16", date:"16/08", desc:"AUTO BAN", value:14.30, cartao:"Inter"},
+  {dateISO:"2026-08-16", date:"16/08", desc:"TABUAS CAMBUI", value:51.00, cartao:"Inter"},
+  {dateISO:"2026-08-16", date:"16/08", desc:"PG *ZE DELIVERY", value:38.52, cartao:"Inter"},
+  {dateISO:"2026-08-15", date:"15/08", desc:"IFD*61207609 QUEILA DA", value:68.34, cartao:"Inter"},
+  {dateISO:"2026-08-15", date:"15/08", desc:"SUPERM ALIANCA", value:43.00, cartao:"Inter"},
+  {dateISO:"2026-08-15", date:"15/08", desc:"MEGA SHOPP", value:60.00, cartao:"Inter"},
+  {dateISO:"2026-08-14", date:"14/08", desc:"SUPERM ALIANCA", value:105.00, cartao:"Inter"},
+  {dateISO:"2026-08-13", date:"13/08", desc:"IFD 64616648 RAILSON S", value:102.68, cartao:"Inter"},
+  {dateISO:"2026-08-13", date:"13/08", desc:"AUTO BAN JUNDIAI", value:14.30, cartao:"Inter"},
+  {dateISO:"2026-08-12", date:"12/08", desc:"SUPERMERCADO LOUVEIRA", value:162.99, cartao:"Inter"},
+  {dateISO:"2026-08-12", date:"12/08", desc:"AUTO BAN JUNDIAI", value:14.30, cartao:"Inter"},
+  {dateISO:"2026-08-12", date:"12/08", desc:"MERCADO DONA HELENA", value:2.49, cartao:"Inter"},
+  {dateISO:"2026-08-12", date:"12/08", desc:"EC SHELLBOX", value:247.13, cartao:"Inter"},
+  {dateISO:"2026-08-11", date:"11/08", desc:"IFD IFOOD CLUB", value:7.95, cartao:"Inter"},
+  {dateISO:"2026-08-10", date:"10/08", desc:"SUPERM ALIANCA", value:58.51, cartao:"Inter"},
+  // exemplos de mês anterior, só pra demonstrar o acordeão fechado
+  {dateISO:"2026-07-22", date:"22/07", desc:"SUPERM ALIANCA", value:97.40, cartao:"Inter"},
+  {dateISO:"2026-07-18", date:"18/07", desc:"POSTO IPIRANGA", value:180.00, cartao:"Santander"},
+  {dateISO:"2026-07-05", date:"05/07", desc:"PETZ LOUVEIRA", value:134.90, cartao:"Santander"},
+];
+
+const FIXED_CATS = ["Compras","Mercado","Combustível","Pet","Lazer","Outros"];
+let LEARNED = {
+  "SUPERMERCADO LOUVEIRA": "Mercado",
+  "MERCADO DONA HELENA": "Mercado",
+  "SUPERM ALIANCA": "Mercado",
+  "EC SHELLBOX": "Combustível",
+  "POSTO IPIRANGA": "Combustível",
+  "PETZ LOUVEIRA": "Pet",
+};
+
+const BASE_COLORS = {
+  "Compras":"#56ccf2","Mercado":"#6fcf97","Combustível":"#f2994a",
+  "Pet":"#f28fb0","Lazer":"#f2c94c","Outros":"#7d8494",
+};
+const EXTRA_PALETTE = ["#9b8afb","#2dd4bf","#f97316","#eb5757","#a3e635","#38bdf8"];
+function colorFor(cat){
+  if(BASE_COLORS[cat]) return BASE_COLORS[cat];
+  let hash = 0;
+  for(let i=0;i<cat.length;i++) hash = cat.charCodeAt(i) + ((hash<<5)-hash);
+  return EXTRA_PALETTE[Math.abs(hash) % EXTRA_PALETTE.length];
+}
+
+const MONTH_NAMES = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+const CURRENT_MONTH_KEY = "2026-08"; // hoje é 18/08/2026
+
+function normKey(desc){ return desc.replace(/\d/g,"").trim().toUpperCase(); }
+function fmt(v){ return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL'}); }
+function txKey(tx){ return `${tx.dateISO}|${normKey(tx.desc)}|${tx.value.toFixed(2)}|${tx.cartao}`; }
+function monthKeyOf(dateISO){ return dateISO.slice(0,7); }
+function monthLabel(key){
+  const [y,m] = key.split("-");
+  return `${MONTH_NAMES[parseInt(m,10)-1]} ${y}`;
+}
+
+let transactions = RAW_TX.map((t,i)=>({...t, id:i}));
+let existingKeys = new Set(transactions.map(txKey));
+let pieChart = null;
+let chartCardFilter = "Todos";
+let chartMonthFilter = CURRENT_MONTH_KEY;
+let pasteCard = "Inter";
+let openMonths = new Set([CURRENT_MONTH_KEY]);
+let selectionMode = false;
+let selectedIds = new Set();
+
+async function loadLearned(){
+  try{
+    const saved = localStorage.getItem("categorias-aprendidas");
+    if(saved){ LEARNED = {...LEARNED, ...JSON.parse(saved)}; }
+  }catch(e){}
+  try{
+    const savedTx = localStorage.getItem("lancamentos-salvos");
+    if(savedTx){
+      const parsed = JSON.parse(savedTx);
+      if(parsed.length){ transactions = parsed; existingKeys = new Set(transactions.map(txKey)); }
+    }
+  }catch(e){}
+  render();
+}
+function saveLearned(){ try{ localStorage.setItem("categorias-aprendidas", JSON.stringify(LEARNED)); }catch(e){ console.error("storage falhou", e); } }
+function saveTransactions(){ try{ localStorage.setItem("lancamentos-salvos", JSON.stringify(transactions)); }catch(e){ console.error("storage falhou", e); } }
+
+function categoryFor(desc){
+  const key = normKey(desc);
+  for(const k in LEARNED){
+    if(key.includes(normKey(k)) || normKey(k).includes(key)) return LEARNED[k];
+  }
+  return null;
+}
+function allCategoriesInUse(){
+  const set = new Set(FIXED_CATS);
+  Object.values(LEARNED).forEach(c=>set.add(c));
+  return Array.from(set);
+}
+
+function render(){
+  transactions.forEach(tx=> tx.cat = categoryFor(tx.desc));
+
+  document.getElementById('totalAmountTx').textContent = fmt(transactions.reduce((s,t)=>s+t.value,0));
+  document.getElementById('totalCountTx').textContent = transactions.length + " lançamentos";
+
+  // pendências
+  const pending = transactions.filter(t=>!t.cat);
+  const pendingList = document.getElementById('pendingList');
+  document.getElementById('pending-section').style.display = pending.length ? "block" : "none";
+  pendingList.innerHTML = "";
+  pending.forEach(tx=>{
+    const cats = allCategoriesInUse();
+    const card = document.createElement('div');
+    card.className = "pending-card";
+    card.innerHTML = `
+      <div class="pending-head">
+        <div class="pending-desc">${tx.desc}</div>
+        <div class="tx-val">${fmt(tx.value)}</div>
+      </div>
+      <div class="pending-meta">${tx.date} · ${tx.cartao} · categoria desconhecida</div>
+      <div class="chip-row">
+        ${cats.map(c=>`<button class="chip" data-id="${tx.id}" data-cat="${c}">${c}</button>`).join("")}
+      </div>
+      <div class="chip-new">
+        <input type="text" placeholder="nova categoria..." data-newfor="${tx.id}">
+        <button data-newbtn="${tx.id}">Usar</button>
+      </div>
+    `;
+    pendingList.appendChild(card);
+  });
+  pendingList.querySelectorAll('.chip').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const tx = transactions.find(t=>t.id == btn.dataset.id);
+      LEARNED[normKey(tx.desc)] = btn.dataset.cat;
+      saveLearned(); saveTransactions(); render();
+    });
+  });
+  pendingList.querySelectorAll('[data-newbtn]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.newbtn;
+      const input = pendingList.querySelector(`[data-newfor="${id}"]`);
+      const val = input.value.trim();
+      if(!val) return;
+      const tx = transactions.find(t=>t.id == id);
+      LEARNED[normKey(tx.desc)] = val;
+      saveLearned(); saveTransactions(); render();
+    });
+  });
+
+  // ---------- histórico agrupado por mês ----------
+  const monthsList = document.getElementById('monthsList');
+  monthsList.innerHTML = "";
+  const byMonth = {};
+  transactions.forEach(tx=>{
+    const mk = monthKeyOf(tx.dateISO);
+    (byMonth[mk] = byMonth[mk] || []).push(tx);
+  });
+  const monthKeys = Object.keys(byMonth).sort((a,b)=> a<b?1:-1);
+  monthKeys.forEach(mk=>{
+    const txs = byMonth[mk].sort((a,b)=> a.dateISO < b.dateISO ? 1 : -1);
+    const monthTotal = txs.reduce((s,t)=>s+t.value,0);
+    const isOpen = openMonths.has(mk);
+    const group = document.createElement('div');
+    group.className = "month-group" + (isOpen ? " open" : "");
+    group.innerHTML = `
+      <div class="month-head" data-monthtoggle="${mk}">
+        <div class="m-name">${monthLabel(mk)} ${mk===CURRENT_MONTH_KEY ? '<span class="tag-atual">atual</span>' : ''}</div>
+        <div class="m-right">
+          <div class="m-total">${fmt(monthTotal)}</div>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="month-body"><div class="month-body-inner" data-txcontainer="${mk}"></div></div>
+    `;
+    monthsList.appendChild(group);
+    const container = group.querySelector(`[data-txcontainer="${mk}"]`);
+    txs.forEach(tx=>{
+      const row = document.createElement('div');
+      row.className = "tx";
+      const cardClass = tx.cartao === "Inter" ? "inter" : "santander";
+      const checked = selectedIds.has(tx.id) ? "checked" : "";
+      row.innerHTML = `
+        <div class="tx-left-wrap">
+          <input type="checkbox" class="tx-checkbox" data-selectid="${tx.id}" ${checked}>
+          <div>
+            <div class="tx-desc">${tx.desc}</div>
+            <div class="tx-meta">
+              <span>${tx.date}</span>
+              <span class="tx-card-tag ${cardClass}">${tx.cartao}</span>
+              ${tx.cat ? `<span class="tx-cat">${tx.cat}</span>` : ""}
+            </div>
+            <div class="tx-actions">
+              <button class="tx-edit" data-editid="${tx.id}">editar categoria</button>
+              <button class="tx-delete" data-deleteid="${tx.id}">excluir</button>
+            </div>
+          </div>
+        </div>
+        <div class="tx-right"><div class="tx-val">${fmt(tx.value)}</div></div>
+      `;
+      container.appendChild(row);
+    });
+  });
+  monthsList.querySelectorAll('[data-monthtoggle]').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      const mk = head.dataset.monthtoggle;
+      if(openMonths.has(mk)) openMonths.delete(mk); else openMonths.add(mk);
+      render();
+    });
+  });
+  monthsList.querySelectorAll('[data-editid]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const tx = transactions.find(t=>t.id == btn.dataset.editid);
+      const novaCat = prompt(`Categoria para "${tx.desc}":`, tx.cat || "");
+      if(novaCat && novaCat.trim()){
+        LEARNED[normKey(tx.desc)] = novaCat.trim();
+        saveLearned(); saveTransactions(); render();
+      }
+    });
+  });
+  monthsList.querySelectorAll('[data-deleteid]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const tx = transactions.find(t=>t.id == btn.dataset.deleteid);
+      if(!confirm(`Excluir "${tx.desc}" (${fmt(tx.value)})?`)) return;
+      existingKeys.delete(txKey(tx));
+      transactions = transactions.filter(t=>t.id != tx.id);
+      selectedIds.delete(tx.id);
+      saveTransactions();
+      render();
+    });
+  });
+  monthsList.querySelectorAll('[data-selectid]').forEach(cb=>{
+    cb.addEventListener('click', (e)=> e.stopPropagation());
+    cb.addEventListener('change', (e)=>{
+      const id = parseInt(cb.dataset.selectid);
+      if(cb.checked) selectedIds.add(id); else selectedIds.delete(id);
+      updateSelectionBar();
+    });
+  });
+
+  document.getElementById('monthsList').classList.toggle('selection-mode', selectionMode);
+  updateSelectionBar();
+
+  // ---------- filtro de mês nos gráficos ----------
+  const monthFilterSel = document.getElementById('monthFilter');
+  const prevVal = chartMonthFilter;
+  monthFilterSel.innerHTML = `<option value="Todos">Todos os meses</option>` +
+    monthKeys.map(mk=>`<option value="${mk}">${monthLabel(mk)}</option>`).join("");
+  if([...monthFilterSel.options].some(o=>o.value===prevVal)) monthFilterSel.value = prevVal;
+  else { monthFilterSel.value = "Todos"; chartMonthFilter = "Todos"; }
+
+  // ---------- GRÁFICOS ----------
+  let filtered = chartCardFilter === "Todos" ? transactions : transactions.filter(t=>t.cartao === chartCardFilter);
+  if(chartMonthFilter !== "Todos") filtered = filtered.filter(t=> monthKeyOf(t.dateISO) === chartMonthFilter);
+
+  const totalFiltered = filtered.reduce((s,t)=>s+t.value,0);
+  document.getElementById('totalAmountChart').textContent = fmt(totalFiltered);
+  document.getElementById('totalCountChart').textContent = filtered.length + " lançamentos";
+
+  const byCat = {};
+  filtered.forEach(tx=>{ if(!tx.cat) return; byCat[tx.cat] = (byCat[tx.cat]||0) + tx.value; });
+  const sorted = Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
+
+  const strip = document.getElementById('strip');
+  const catList = document.getElementById('catList');
+  strip.innerHTML = ""; catList.innerHTML = "";
+  sorted.forEach(([cat,val])=>{
+    const pct = totalFiltered ? (val/totalFiltered*100).toFixed(1) : 0;
+    const seg = document.createElement('div');
+    seg.style.width = pct+"%";
+    seg.style.background = colorFor(cat);
+    strip.appendChild(seg);
+
+    const card = document.createElement('div');
+    card.className = "cat-card";
+    card.innerHTML = `
+      <div class="cat-top">
+        <div class="cat-name"><span class="dot" style="background:${colorFor(cat)}"></span>${cat}</div>
+        <div class="cat-vals"><div class="v">${fmt(val)}</div><div class="p">${pct}%</div></div>
+      </div>
+      <div class="mini-bar"><div style="width:${pct}%; background:${colorFor(cat)}"></div></div>
+    `;
+    catList.appendChild(card);
+  });
+
+  // destaque: categoria que mais gastou
+  const topCatWrap = document.getElementById('topCatWrap');
+  topCatWrap.innerHTML = "";
+  if(sorted.length){
+    const [topCat, topVal] = sorted[0];
+    const pct = (topVal/totalFiltered*100).toFixed(1);
+    const card = document.createElement('div');
+    card.className = "top-cat-card";
+    card.innerHTML = `
+      <span class="dot" style="background:${colorFor(topCat)}; width:14px; height:14px;"></span>
+      <div>
+        <div class="label">Categoria que mais gastou</div>
+        <div class="name">${topCat}</div>
+      </div>
+      <div class="vals"><div class="v">${fmt(topVal)}</div><div class="p">${pct}% do total</div></div>
+    `;
+    topCatWrap.appendChild(card);
+  }
+
+  const ctx = document.getElementById('pie');
+  const labels = sorted.map(s=>s[0]);
+  const values = sorted.map(s=>s[1]);
+  const colors = labels.map(colorFor);
+  if(pieChart) pieChart.destroy();
+  if(labels.length){
+    pieChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: { labels, datasets:[{ data: values, backgroundColor: colors, borderWidth:0 }] },
+      options: { cutout: '62%', plugins:{ legend:{ position:'bottom', labels:{ color:'#eef0f4', font:{family:'Inter', size:11}, boxWidth:10, padding:14 } } } }
+    });
+  }
+}
+
+// ---------- seleção múltipla e exclusão em massa ----------
+function updateSelectionBar(){
+  const deleteBtn = document.getElementById('deleteSelectedBtn');
+  const selectAllBtn = document.getElementById('selectAllBtn');
+  deleteBtn.style.display = selectionMode ? "inline-block" : "none";
+  selectAllBtn.style.display = selectionMode ? "inline-block" : "none";
+  deleteBtn.textContent = `Excluir (${selectedIds.size})`;
+  deleteBtn.disabled = selectedIds.size === 0;
+}
+document.getElementById('toggleSelectMode').addEventListener('click', ()=>{
+  selectionMode = !selectionMode;
+  if(!selectionMode) selectedIds.clear();
+  document.getElementById('toggleSelectMode').classList.toggle('active', selectionMode);
+  document.getElementById('toggleSelectMode').textContent = selectionMode ? "Cancelar seleção" : "Selecionar";
+  render();
+});
+document.getElementById('selectAllBtn').addEventListener('click', ()=>{
+  if(selectedIds.size === transactions.length){
+    selectedIds.clear();
+  }else{
+    transactions.forEach(t=>selectedIds.add(t.id));
+  }
+  render();
+});
+document.getElementById('deleteSelectedBtn').addEventListener('click', ()=>{
+  if(selectedIds.size === 0) return;
+  if(!confirm(`Excluir ${selectedIds.size} lançamento(s) selecionado(s)?`)) return;
+  transactions.forEach(t=>{ if(selectedIds.has(t.id)) existingKeys.delete(txKey(t)); });
+  transactions = transactions.filter(t=>!selectedIds.has(t.id));
+  selectedIds.clear();
+  saveTransactions();
+  render();
+});
+
+// ---------- tabs ----------
+document.querySelectorAll('nav.tabbar button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('nav.tabbar button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    document.getElementById('view-lancamentos').classList.toggle('active', tab==='lancamentos');
+    document.getElementById('view-graficos').classList.toggle('active', tab==='graficos');
+    document.getElementById('pageTitle').textContent = tab==='lancamentos' ? 'Lançamentos' : 'Gráficos';
+    document.getElementById('pageSub').textContent = tab==='lancamentos' ? 'Inter e Santander' : 'Resumo por categoria';
+  });
+});
+
+// ---------- filtros de gráficos ----------
+document.getElementById('chartCardFilter').querySelectorAll('.seg').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.getElementById('chartCardFilter').querySelectorAll('.seg').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    chartCardFilter = btn.dataset.filter;
+    render();
+  });
+});
+document.getElementById('monthFilter').addEventListener('change', (e)=>{
+  chartMonthFilter = e.target.value;
+  render();
+});
+
+// ---------- seletor de cartão (paste) ----------
+document.querySelectorAll('[data-pastecard]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('[data-pastecard]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    pasteCard = btn.dataset.pastecard;
+  });
+});
+
+// ---------- paste manual ----------
+document.getElementById('pasteBtn').addEventListener('click', ()=>{
+  const raw = document.getElementById('pasteBox').value.trim();
+  if(!raw) return;
+  const lines = raw.split("\n").map(l=>l.trim()).filter(Boolean);
+  let added = 0, dup = 0;
+  const year = "2026";
+  lines.forEach(line=>{
+    const parts = line.split("|").map(p=>p.trim());
+    if(parts.length < 3) return;
+    const [date, desc, valStr] = parts;
+    const value = parseFloat(valStr.replace(/\./g,"").replace(",", "."));
+    if(isNaN(value)) return;
+    const [dd,mm] = date.split("/");
+    const dateISO = `${year}-${mm.padStart(2,'0')}-${dd.padStart(2,'0')}`;
+    const newTx = {date, dateISO, desc, value, cartao:pasteCard, id: transactions.length + added};
+    const key = txKey(newTx);
+    if(existingKeys.has(key)){ dup++; return; }
+    existingKeys.add(key);
+    transactions.push(newTx);
+    added++;
+  });
+  document.getElementById('pasteBox').value = "";
+  saveTransactions();
+  render();
+  if(dup>0) alert(`${added} lançamento(s) adicionado(s). ${dup} já existiam e foram ignorados.`);
+});
+
+loadLearned();
+</script>
+</body>
+</html>
