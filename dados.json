@@ -9,7 +9,10 @@
     "MEDICATUS FARMACIA": "Farmácia",
     "CLARO FLEX": "Fixos",
     "TABUAS CAMBUI CAMPINAS": "Lazer",
-    "BAD BONE CAMPINAS": "Lazer"
+    "BAD BONE CAMPINAS": "Lazer",
+    "AUTO BAN JUNDIAI": "Lazer",
+    "PG ZE DELIVERY SAO PAULO": "Lazer",
+    "IFD QUEILA DA JUNDIAI": "Lazer"
   },
   "transactions": [
     {
@@ -55,7 +58,7 @@
       "value": 14.3,
       "cartao": "Inter",
       "id": 8,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "16/08",
@@ -64,7 +67,7 @@
       "value": 38.52,
       "cartao": "Inter",
       "id": 10,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "15/08",
@@ -73,7 +76,7 @@
       "value": 68.34,
       "cartao": "Inter",
       "id": 12,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "15/08",
@@ -118,7 +121,7 @@
       "value": 14.3,
       "cartao": "Inter",
       "id": 22,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "12/08",
@@ -136,7 +139,7 @@
       "value": 14.3,
       "cartao": "Inter",
       "id": 26,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "12/08",
@@ -199,7 +202,7 @@
       "value": 35.82,
       "cartao": "Inter",
       "id": 40,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "08/08",
