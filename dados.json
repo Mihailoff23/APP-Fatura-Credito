@@ -16,7 +16,8 @@
     "MEGA SHOPP LOUVEIRA": "Compras",
     "IFD RAILSON S LOUVEIRA": "Lazer",
     "IFD IFOOD CLUB OSASCO": "Lazer",
-    "PAGAMENTO ON LINE": "Cartão"
+    "PAGAMENTO ON LINE": "Cartão",
+    "ZIG CERVEJARIA TAB AVALINHOS": "Lazer"
   },
   "transactions": [
     {
@@ -197,7 +198,7 @@
       "value": 199.36,
       "cartao": "Inter",
       "id": 38,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "09/08",
