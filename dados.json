@@ -7,7 +7,9 @@
     "POSTO IPIRANGA": "Combustível",
     "PETZ LOUVEIRA": "Pet",
     "MEDICATUS FARMACIA": "Farmácia",
-    "CLARO FLEX": "Fixos"
+    "CLARO FLEX": "Fixos",
+    "TABUAS CAMBUI CAMPINAS": "Lazer",
+    "BAD BONE CAMPINAS": "Lazer"
   },
   "transactions": [
     {
@@ -35,7 +37,7 @@
       "value": 51,
       "cartao": "Inter",
       "id": 4,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "16/08",
@@ -44,7 +46,7 @@
       "value": 152.17,
       "cartao": "Inter",
       "id": 6,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "16/08",
