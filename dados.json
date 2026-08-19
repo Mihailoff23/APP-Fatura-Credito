@@ -7,5 +7,348 @@
     "POSTO IPIRANGA": "Combustível",
     "PETZ LOUVEIRA": "Pet"
   },
-  "transactions": []
+  "transactions": [
+    {
+      "date": "18/08",
+      "dateISO": "2026-08-18",
+      "desc": "MEDICATUS FARMACIA",
+      "value": 84.7,
+      "cartao": "Inter",
+      "id": 0,
+      "cat": null
+    },
+    {
+      "date": "18/08",
+      "dateISO": "2026-08-18",
+      "desc": "CLARO FLEX",
+      "value": 39.99,
+      "cartao": "Inter",
+      "id": 2,
+      "cat": null
+    },
+    {
+      "date": "16/08",
+      "dateISO": "2026-08-16",
+      "desc": "TABUAS CAMBUI CAMPINAS",
+      "value": 51,
+      "cartao": "Inter",
+      "id": 4,
+      "cat": null
+    },
+    {
+      "date": "16/08",
+      "dateISO": "2026-08-16",
+      "desc": "BAD BONE CAMPINAS",
+      "value": 152.17,
+      "cartao": "Inter",
+      "id": 6,
+      "cat": null
+    },
+    {
+      "date": "16/08",
+      "dateISO": "2026-08-16",
+      "desc": "AUTO BAN JUNDIAI",
+      "value": 14.3,
+      "cartao": "Inter",
+      "id": 8,
+      "cat": null
+    },
+    {
+      "date": "16/08",
+      "dateISO": "2026-08-16",
+      "desc": "PG ZE DELIVERY SAO PAULO",
+      "value": 38.52,
+      "cartao": "Inter",
+      "id": 10,
+      "cat": null
+    },
+    {
+      "date": "15/08",
+      "dateISO": "2026-08-15",
+      "desc": "IFD QUEILA DA JUNDIAI",
+      "value": 68.34,
+      "cartao": "Inter",
+      "id": 12,
+      "cat": null
+    },
+    {
+      "date": "15/08",
+      "dateISO": "2026-08-15",
+      "desc": "SUPERM ALIANCA LOUVEIRA",
+      "value": 43,
+      "cartao": "Inter",
+      "id": 14,
+      "cat": "Mercado"
+    },
+    {
+      "date": "15/08",
+      "dateISO": "2026-08-15",
+      "desc": "MEGA SHOPP LOUVEIRA",
+      "value": 60,
+      "cartao": "Inter",
+      "id": 16,
+      "cat": null
+    },
+    {
+      "date": "14/08",
+      "dateISO": "2026-08-14",
+      "desc": "SUPERM ALIANCA LOUVEIRA",
+      "value": 105,
+      "cartao": "Inter",
+      "id": 18,
+      "cat": "Mercado"
+    },
+    {
+      "date": "13/08",
+      "dateISO": "2026-08-13",
+      "desc": "IFD RAILSON S LOUVEIRA",
+      "value": 102.68,
+      "cartao": "Inter",
+      "id": 20,
+      "cat": null
+    },
+    {
+      "date": "13/08",
+      "dateISO": "2026-08-13",
+      "desc": "AUTO BAN JUNDIAI",
+      "value": 14.3,
+      "cartao": "Inter",
+      "id": 22,
+      "cat": null
+    },
+    {
+      "date": "12/08",
+      "dateISO": "2026-08-12",
+      "desc": "MERCADO DONA HELENA LOUVEIRA",
+      "value": 2.49,
+      "cartao": "Inter",
+      "id": 24,
+      "cat": "Mercado"
+    },
+    {
+      "date": "12/08",
+      "dateISO": "2026-08-12",
+      "desc": "AUTO BAN JUNDIAI",
+      "value": 14.3,
+      "cartao": "Inter",
+      "id": 26,
+      "cat": null
+    },
+    {
+      "date": "12/08",
+      "dateISO": "2026-08-12",
+      "desc": "SUPERMERCADO LOUVEIRA LOUVEIRA",
+      "value": 162.99,
+      "cartao": "Inter",
+      "id": 28,
+      "cat": "Mercado"
+    },
+    {
+      "date": "12/08",
+      "dateISO": "2026-08-12",
+      "desc": "EC SHELLBOX RIO DE JANEIR",
+      "value": 247.13,
+      "cartao": "Inter",
+      "id": 30,
+      "cat": "Combustível"
+    },
+    {
+      "date": "11/08",
+      "dateISO": "2026-08-11",
+      "desc": "IFD IFOOD CLUB Osasco",
+      "value": 7.95,
+      "cartao": "Inter",
+      "id": 32,
+      "cat": null
+    },
+    {
+      "date": "10/08",
+      "dateISO": "2026-08-10",
+      "desc": "SUPERM ALIANCA LOUVEIRA",
+      "value": 58.51,
+      "cartao": "Inter",
+      "id": 34,
+      "cat": "Mercado"
+    },
+    {
+      "date": "10/08",
+      "dateISO": "2026-08-10",
+      "desc": "PAGAMENTO ON LINE",
+      "value": 2444.46,
+      "cartao": "Inter",
+      "id": 36,
+      "cat": null
+    },
+    {
+      "date": "09/08",
+      "dateISO": "2026-08-09",
+      "desc": "ZIG CERVEJARIA TAB AVALINHOS",
+      "value": 199.36,
+      "cartao": "Inter",
+      "id": 38,
+      "cat": null
+    },
+    {
+      "date": "09/08",
+      "dateISO": "2026-08-09",
+      "desc": "PG ZE DELIVERY SAO PAULO",
+      "value": 35.82,
+      "cartao": "Inter",
+      "id": 40,
+      "cat": null
+    },
+    {
+      "date": "08/08",
+      "dateISO": "2026-08-08",
+      "desc": "BOA SUPERMERCADOS JUNDIAI",
+      "value": 22.09,
+      "cartao": "Inter",
+      "id": 42,
+      "cat": null
+    },
+    {
+      "date": "08/08",
+      "dateISO": "2026-08-08",
+      "desc": "AGRO SNOOP LOUVEIRA",
+      "value": 38.68,
+      "cartao": "Inter",
+      "id": 44,
+      "cat": null
+    },
+    {
+      "date": "08/08",
+      "dateISO": "2026-08-08",
+      "desc": "JDHS COMERCIO DE VEST JUNDIAI",
+      "value": 39.99,
+      "cartao": "Inter",
+      "id": 46,
+      "cat": null
+    },
+    {
+      "date": "08/08",
+      "dateISO": "2026-08-08",
+      "desc": "ZeMoreiraGas LOUVEIRA",
+      "value": 63,
+      "cartao": "Inter",
+      "id": 48,
+      "cat": null
+    },
+    {
+      "date": "07/08",
+      "dateISO": "2026-08-07",
+      "desc": "DROGAL CAPIVARI",
+      "value": 47.25,
+      "cartao": "Inter",
+      "id": 50,
+      "cat": null
+    },
+    {
+      "date": "07/08",
+      "dateISO": "2026-08-07",
+      "desc": "SUPERMERCADO LOUVEIRA LOUVEIRA",
+      "value": 163.03,
+      "cartao": "Inter",
+      "id": 52,
+      "cat": "Mercado"
+    },
+    {
+      "date": "05/08",
+      "dateISO": "2026-08-05",
+      "desc": "A FAZENDA AGROPECUARIA LOUVEIRA",
+      "value": 19.9,
+      "cartao": "Inter",
+      "id": 54,
+      "cat": null
+    },
+    {
+      "date": "05/08",
+      "dateISO": "2026-08-05",
+      "desc": "MARTINICHI LOUVEIRA",
+      "value": 44.23,
+      "cartao": "Inter",
+      "id": 56,
+      "cat": null
+    },
+    {
+      "date": "04/08",
+      "dateISO": "2026-08-04",
+      "desc": "SUPERM ALIANCA LOUVEIRA",
+      "value": 152,
+      "cartao": "Inter",
+      "id": 58,
+      "cat": "Mercado"
+    },
+    {
+      "date": "03/08",
+      "dateISO": "2026-08-03",
+      "desc": "IOF ADICIONAL DB PF",
+      "value": 1.15,
+      "cartao": "Inter",
+      "id": 60,
+      "cat": null
+    },
+    {
+      "date": "03/08",
+      "dateISO": "2026-08-03",
+      "desc": "IOF DIARIO DB PF",
+      "value": 1.32,
+      "cartao": "Inter",
+      "id": 62,
+      "cat": null
+    },
+    {
+      "date": "03/08",
+      "dateISO": "2026-08-03",
+      "desc": "JUROS PROJETADOS",
+      "value": 2.18,
+      "cartao": "Inter",
+      "id": 64,
+      "cat": null
+    },
+    {
+      "date": "03/08",
+      "dateISO": "2026-08-03",
+      "desc": "ENCARGOS ROTATIVO",
+      "value": 9.03,
+      "cartao": "Inter",
+      "id": 66,
+      "cat": null
+    },
+    {
+      "date": "03/08",
+      "dateISO": "2026-08-03",
+      "desc": "JUROS PROJETADOS",
+      "value": 10.85,
+      "cartao": "Inter",
+      "id": 68,
+      "cat": null
+    },
+    {
+      "date": "03/08",
+      "dateISO": "2026-08-03",
+      "desc": "ENCARGOS ROTATIVO",
+      "value": 44.9,
+      "cartao": "Inter",
+      "id": 70,
+      "cat": null
+    },
+    {
+      "date": "03/08",
+      "dateISO": "2026-08-03",
+      "desc": "IOF DIARIO DB PF",
+      "value": 0.15,
+      "cartao": "Inter",
+      "id": 72,
+      "cat": null
+    },
+    {
+      "date": "03/08",
+      "dateISO": "2026-08-03",
+      "desc": "ROTATIVO SALDO FINANCIADO",
+      "value": 4.14,
+      "cartao": "Inter",
+      "id": 74,
+      "cat": null
+    }
+  ]
 }
