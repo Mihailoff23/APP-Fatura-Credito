@@ -23,7 +23,8 @@
     "JDHS COMERCIO DE VEST JUNDIAI": "Compras",
     "ZEMOREIRAGAS LOUVEIRA": "Fixos",
     "DROGAL CAPIVARI": "Farmácia",
-    "A FAZENDA AGROPECUARIA LOUVEIRA": "Pet"
+    "A FAZENDA AGROPECUARIA LOUVEIRA": "Pet",
+    "MARTINICHI LOUVEIRA": "Lazer"
   },
   "transactions": [
     {
@@ -285,7 +286,7 @@
       "value": 44.23,
       "cartao": "Inter",
       "id": 56,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "04/08",
