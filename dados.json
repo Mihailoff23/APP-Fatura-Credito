@@ -15,7 +15,8 @@
     "IFD QUEILA DA JUNDIAI": "Lazer",
     "MEGA SHOPP LOUVEIRA": "Compras",
     "IFD RAILSON S LOUVEIRA": "Lazer",
-    "IFD IFOOD CLUB OSASCO": "Lazer"
+    "IFD IFOOD CLUB OSASCO": "Lazer",
+    "PAGAMENTO ON LINE": "Cartão"
   },
   "transactions": [
     {
@@ -187,7 +188,7 @@
       "value": 2444.46,
       "cartao": "Inter",
       "id": 36,
-      "cat": null
+      "cat": "Cartão"
     },
     {
       "date": "09/08",
