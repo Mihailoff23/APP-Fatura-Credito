@@ -28,7 +28,8 @@
     "IOF ADICIONAL DB PF": "Cartão",
     "IOF DIARIO DB PF": "Cartão",
     "JUROS PROJETADOS": "Cartão",
-    "ENCARGOS ROTATIVO": "Cartão"
+    "ENCARGOS ROTATIVO": "Cartão",
+    "ROTATIVO SALDO FINANCIADO": "Cartão"
   },
   "transactions": [
     {
@@ -371,7 +372,7 @@
       "value": 4.14,
       "cartao": "Inter",
       "id": 74,
-      "cat": null
+      "cat": "Cartão"
     }
   ]
 }
