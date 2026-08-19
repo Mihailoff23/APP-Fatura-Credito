@@ -18,7 +18,8 @@
     "IFD IFOOD CLUB OSASCO": "Lazer",
     "PAGAMENTO ON LINE": "Cartão",
     "ZIG CERVEJARIA TAB AVALINHOS": "Lazer",
-    "BOA SUPERMERCADOS JUNDIAI": "Mercado"
+    "BOA SUPERMERCADOS JUNDIAI": "Mercado",
+    "AGRO SNOOP LOUVEIRA": "Pet"
   },
   "transactions": [
     {
@@ -226,7 +227,7 @@
       "value": 38.68,
       "cartao": "Inter",
       "id": 44,
-      "cat": null
+      "cat": "Pet"
     },
     {
       "date": "08/08",
