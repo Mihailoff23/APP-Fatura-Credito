@@ -38,7 +38,8 @@
     "OXXO ESPORTES VALINHOS BRA": "Mercado",
     "MAFIOSA CERVEJARIA VALINHOS BRA": "Lazer",
     "ZARELLI SUPERMERCADOS LOUVEIRA BRA": "Mercado",
-    "AGROPECUARIA A FAZENDA LOUVEIRA BRA": "Pet"
+    "AGROPECUARIA A FAZENDA LOUVEIRA BRA": "Pet",
+    "WWW.F.COM LONDON LND": "Fixos"
   },
   "transactions": [
     {
@@ -408,7 +409,7 @@
       "value": 40.6,
       "cartao": "Inter",
       "id": 45,
-      "cat": null
+      "cat": "Fixos"
     },
     {
       "date": "22/08",
