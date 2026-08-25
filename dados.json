@@ -33,7 +33,8 @@
     "AUTO BAN BRA JUNDIAI": "Lazer",
     "V ALVES ACADEMIA": "Fixos",
     "IOF INTERNACIONAL": "Cartão",
-    "SEARA ALIMENTOS LTDA LOUVEIRA BRA": "Lazer"
+    "SEARA ALIMENTOS LTDA LOUVEIRA BRA": "Lazer",
+    "IRMAOS BOA JUNDIAI BRA": "Mercado"
   },
   "transactions": [
     {
@@ -457,7 +458,7 @@
       "value": 53.41,
       "cartao": "Inter",
       "id": 57,
-      "cat": null
+      "cat": "Mercado"
     },
     {
       "date": "23/08",
