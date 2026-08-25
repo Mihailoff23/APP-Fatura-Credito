@@ -30,7 +30,8 @@
     "JUROS PROJETADOS": "Cartão",
     "ENCARGOS ROTATIVO": "Cartão",
     "ROTATIVO SALDO FINANCIADO": "Cartão",
-    "AUTO BAN BRA JUNDIAI": "Lazer"
+    "AUTO BAN BRA JUNDIAI": "Lazer",
+    "V ALVES ACADEMIA": "Fixos"
   },
   "transactions": [
     {
@@ -508,7 +509,7 @@
       "value": 139.9,
       "cartao": "Inter",
       "id": 69,
-      "cat": null
+      "cat": "Fixos"
     }
   ]
 }
