@@ -36,7 +36,8 @@
     "SEARA ALIMENTOS LTDA LOUVEIRA BRA": "Lazer",
     "IRMAOS BOA JUNDIAI BRA": "Mercado",
     "OXXO ESPORTES VALINHOS BRA": "Mercado",
-    "MAFIOSA CERVEJARIA VALINHOS BRA": "Lazer"
+    "MAFIOSA CERVEJARIA VALINHOS BRA": "Lazer",
+    "ZARELLI SUPERMERCADOS LOUVEIRA BRA": "Mercado"
   },
   "transactions": [
     {
@@ -424,7 +425,7 @@
       "value": 95.21,
       "cartao": "Inter",
       "id": 49,
-      "cat": null
+      "cat": "Mercado"
     },
     {
       "date": "22/08",
