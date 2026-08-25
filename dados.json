@@ -34,7 +34,8 @@
     "V ALVES ACADEMIA": "Fixos",
     "IOF INTERNACIONAL": "Cartão",
     "SEARA ALIMENTOS LTDA LOUVEIRA BRA": "Lazer",
-    "IRMAOS BOA JUNDIAI BRA": "Mercado"
+    "IRMAOS BOA JUNDIAI BRA": "Mercado",
+    "OXXO ESPORTES VALINHOS BRA": "Mercado"
   },
   "transactions": [
     {
@@ -449,7 +450,7 @@
       "value": 35,
       "cartao": "Inter",
       "id": 55,
-      "cat": null
+      "cat": "Mercado"
     },
     {
       "date": "23/08",
