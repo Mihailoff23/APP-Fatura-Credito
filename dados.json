@@ -376,24 +376,6 @@
       "cat": "Mercado"
     },
     {
-      "date": "16/08",
-      "dateISO": "2026-08-16",
-      "desc": "AUTO BAN BRA JUNDIAI",
-      "value": 14.3,
-      "cartao": "Inter",
-      "id": 39,
-      "cat": "Lazer"
-    },
-    {
-      "date": "19/08",
-      "dateISO": "2026-08-19",
-      "desc": "SUPERMERCADO LOUVEIRA LOUVEIRA BRA",
-      "value": 69.7,
-      "cartao": "Inter",
-      "id": 39,
-      "cat": "Mercado"
-    },
-    {
       "date": "20/08",
       "dateISO": "2026-08-20",
       "desc": "Mega4Shop LOUVEIRA BRA",
