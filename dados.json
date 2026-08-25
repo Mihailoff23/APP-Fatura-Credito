@@ -37,7 +37,8 @@
     "IRMAOS BOA JUNDIAI BRA": "Mercado",
     "OXXO ESPORTES VALINHOS BRA": "Mercado",
     "MAFIOSA CERVEJARIA VALINHOS BRA": "Lazer",
-    "ZARELLI SUPERMERCADOS LOUVEIRA BRA": "Mercado"
+    "ZARELLI SUPERMERCADOS LOUVEIRA BRA": "Mercado",
+    "AGROPECUARIA A FAZENDA LOUVEIRA BRA": "Pet"
   },
   "transactions": [
     {
@@ -416,7 +417,7 @@
       "value": 10,
       "cartao": "Inter",
       "id": 47,
-      "cat": null
+      "cat": "Pet"
     },
     {
       "date": "22/08",
