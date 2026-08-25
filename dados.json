@@ -40,7 +40,8 @@
     "ZARELLI SUPERMERCADOS LOUVEIRA BRA": "Mercado",
     "AGROPECUARIA A FAZENDA LOUVEIRA BRA": "Pet",
     "WWW.F.COM LONDON LND": "Fixos",
-    "DROGASIL LOUVEIRA BRA": "Farmácia"
+    "DROGASIL LOUVEIRA BRA": "Farmácia",
+    "MEGASHOP LOUVEIRA BRA": "Compras"
   },
   "transactions": [
     {
@@ -392,7 +393,7 @@
       "value": 45,
       "cartao": "Inter",
       "id": 41,
-      "cat": null
+      "cat": "Compras"
     },
     {
       "date": "22/08",
