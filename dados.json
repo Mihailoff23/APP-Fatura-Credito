@@ -32,7 +32,8 @@
     "ROTATIVO SALDO FINANCIADO": "Cartão",
     "AUTO BAN BRA JUNDIAI": "Lazer",
     "V ALVES ACADEMIA": "Fixos",
-    "IOF INTERNACIONAL": "Cartão"
+    "IOF INTERNACIONAL": "Cartão",
+    "SEARA ALIMENTOS LTDA LOUVEIRA BRA": "Lazer"
   },
   "transactions": [
     {
@@ -465,7 +466,7 @@
       "value": 41.9,
       "cartao": "Inter",
       "id": 59,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "23/08",
