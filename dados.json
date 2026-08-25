@@ -35,7 +35,8 @@
     "IOF INTERNACIONAL": "Cartão",
     "SEARA ALIMENTOS LTDA LOUVEIRA BRA": "Lazer",
     "IRMAOS BOA JUNDIAI BRA": "Mercado",
-    "OXXO ESPORTES VALINHOS BRA": "Mercado"
+    "OXXO ESPORTES VALINHOS BRA": "Mercado",
+    "MAFIOSA CERVEJARIA VALINHOS BRA": "Lazer"
   },
   "transactions": [
     {
@@ -432,7 +433,7 @@
       "value": 120,
       "cartao": "Inter",
       "id": 51,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "22/08",
