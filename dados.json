@@ -41,7 +41,8 @@
     "AGROPECUARIA A FAZENDA LOUVEIRA BRA": "Pet",
     "WWW.F.COM LONDON LND": "Fixos",
     "DROGASIL LOUVEIRA BRA": "Farmácia",
-    "MEGASHOP LOUVEIRA BRA": "Compras"
+    "MEGASHOP LOUVEIRA BRA": "Compras",
+    "RAFAEL ALEX ANSELMO LOUVEIRA BRA": "Compras"
   },
   "transactions": [
     {
@@ -447,7 +448,7 @@
       "value": 71,
       "cartao": "Inter",
       "id": 53,
-      "cat": null
+      "cat": "Compras"
     },
     {
       "date": "22/08",
