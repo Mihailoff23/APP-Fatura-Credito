@@ -383,6 +383,150 @@
       "cartao": "Inter",
       "id": 39,
       "cat": "Lazer"
+    },
+    {
+      "date": "19/08",
+      "dateISO": "2026-08-19",
+      "desc": "SUPERMERCADO LOUVEIRA LOUVEIRA BRA",
+      "value": 69.7,
+      "cartao": "Inter",
+      "id": 39,
+      "cat": "Mercado"
+    },
+    {
+      "date": "20/08",
+      "dateISO": "2026-08-20",
+      "desc": "Mega4Shop LOUVEIRA BRA",
+      "value": 45,
+      "cartao": "Inter",
+      "id": 41,
+      "cat": null
+    },
+    {
+      "date": "22/08",
+      "dateISO": "2026-08-22",
+      "desc": "DROGASIL1856 LOUVEIRA BRA",
+      "value": 31.5,
+      "cartao": "Inter",
+      "id": 43,
+      "cat": null
+    },
+    {
+      "date": "22/08",
+      "dateISO": "2026-08-22",
+      "desc": "WWW.F1.COM LONDON LND",
+      "value": 40.6,
+      "cartao": "Inter",
+      "id": 45,
+      "cat": null
+    },
+    {
+      "date": "22/08",
+      "dateISO": "2026-08-22",
+      "desc": "AGROPECUARIA A FAZENDA Louveira BRA",
+      "value": 10,
+      "cartao": "Inter",
+      "id": 47,
+      "cat": null
+    },
+    {
+      "date": "22/08",
+      "dateISO": "2026-08-22",
+      "desc": "ZARELLI SUPERMERCADOS LOUVEIRA BRA",
+      "value": 95.21,
+      "cartao": "Inter",
+      "id": 49,
+      "cat": null
+    },
+    {
+      "date": "22/08",
+      "dateISO": "2026-08-22",
+      "desc": "MAFIOSA CERVEJARIA VALINHOS BRA",
+      "value": 120,
+      "cartao": "Inter",
+      "id": 51,
+      "cat": null
+    },
+    {
+      "date": "22/08",
+      "dateISO": "2026-08-22",
+      "desc": "RAFAEL ALEX ANSELMO LOUVEIRA BRA",
+      "value": 71,
+      "cartao": "Inter",
+      "id": 53,
+      "cat": null
+    },
+    {
+      "date": "22/08",
+      "dateISO": "2026-08-22",
+      "desc": "OXXO ESPORTES VALINHOS BRA",
+      "value": 35,
+      "cartao": "Inter",
+      "id": 55,
+      "cat": null
+    },
+    {
+      "date": "23/08",
+      "dateISO": "2026-08-23",
+      "desc": "IRMAOS BOA JUNDIAI BRA",
+      "value": 53.41,
+      "cartao": "Inter",
+      "id": 57,
+      "cat": null
+    },
+    {
+      "date": "23/08",
+      "dateISO": "2026-08-23",
+      "desc": "SEARA ALIMENTOS LTDA LOUVEIRA BRA",
+      "value": 41.9,
+      "cartao": "Inter",
+      "id": 59,
+      "cat": null
+    },
+    {
+      "date": "23/08",
+      "dateISO": "2026-08-23",
+      "desc": "SUPERM ALIANCA LOUVEIRA 076",
+      "value": 20.55,
+      "cartao": "Inter",
+      "id": 61,
+      "cat": "Mercado"
+    },
+    {
+      "date": "23/08",
+      "dateISO": "2026-08-23",
+      "desc": "IOF INTERNACIONAL",
+      "value": 1.42,
+      "cartao": "Inter",
+      "id": 63,
+      "cat": null
+    },
+    {
+      "date": "23/08",
+      "dateISO": "2026-08-23",
+      "desc": "SUPERM ALIANCA",
+      "value": 125,
+      "cartao": "Inter",
+      "id": 65,
+      "cat": "Mercado"
+    },
+    {
+      "date": "23/08",
+      "dateISO": "2026-08-23",
+      "desc": "E H M F V LTDA VINHEDO BRA",
+      "value": 80,
+      "cartao": "Inter",
+      "id": 67,
+      "cat": null
+    },
+    {
+      "date": "25/08",
+      "dateISO": "2026-08-25",
+      "desc": "V ALVES ACADEMIA",
+      "value": 139.9,
+      "cartao": "Inter",
+      "id": 69,
+      "cat": null
     }
   ]
 }
