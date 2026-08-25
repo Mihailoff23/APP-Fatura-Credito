@@ -39,7 +39,8 @@
     "MAFIOSA CERVEJARIA VALINHOS BRA": "Lazer",
     "ZARELLI SUPERMERCADOS LOUVEIRA BRA": "Mercado",
     "AGROPECUARIA A FAZENDA LOUVEIRA BRA": "Pet",
-    "WWW.F.COM LONDON LND": "Fixos"
+    "WWW.F.COM LONDON LND": "Fixos",
+    "DROGASIL LOUVEIRA BRA": "Farmácia"
   },
   "transactions": [
     {
@@ -400,7 +401,7 @@
       "value": 31.5,
       "cartao": "Inter",
       "id": 43,
-      "cat": null
+      "cat": "Farmácia"
     },
     {
       "date": "22/08",
