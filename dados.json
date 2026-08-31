@@ -43,7 +43,9 @@
     "DROGASIL LOUVEIRA BRA": "Farmácia",
     "MEGASHOP LOUVEIRA BRA": "Compras",
     "RAFAEL ALEX ANSELMO LOUVEIRA BRA": "Compras",
-    "SUPERM ALIANCA LOUVEIRA": "Lazer"
+    "SUPERM ALIANCA LOUVEIRA": "Lazer",
+    "MP VAVAFRANGOS": "Lazer",
+    "MERCADOLIVRE MERCADOL": "Compras"
   },
   "transactions": [
     {
@@ -593,7 +595,7 @@
       "value": 69.95,
       "cartao": "Inter",
       "id": 71,
-      "cat": null
+      "cat": "Lazer"
     },
     {
       "date": "30/08",
@@ -602,7 +604,7 @@
       "value": 38.39,
       "cartao": "Inter",
       "id": 73,
-      "cat": null
+      "cat": "Compras"
     }
   ]
 }
