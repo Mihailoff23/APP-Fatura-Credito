@@ -444,15 +444,6 @@
     {
       "date": "22/08",
       "dateISO": "2026-08-22",
-      "desc": "RAFAEL ALEX ANSELMO LOUVEIRA BRA",
-      "value": 71,
-      "cartao": "Inter",
-      "id": 53,
-      "cat": "Compras"
-    },
-    {
-      "date": "22/08",
-      "dateISO": "2026-08-22",
       "desc": "OXXO ESPORTES VALINHOS BRA",
       "value": 35,
       "cartao": "Inter",
@@ -520,15 +511,6 @@
       "value": 139.9,
       "cartao": "Inter",
       "id": 69,
-      "cat": "Fixos"
-    },
-    {
-      "date": "25/08",
-      "dateISO": "2026-08-25",
-      "desc": "V ALVES ACADEMIA LOUVEIRA",
-      "value": 139.9,
-      "cartao": "Inter",
-      "id": 53,
       "cat": "Fixos"
     },
     {
