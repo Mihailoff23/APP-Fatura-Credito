@@ -45,7 +45,8 @@
     "RAFAEL ALEX ANSELMO LOUVEIRA BRA": "Compras",
     "SUPERM ALIANCA LOUVEIRA": "Lazer",
     "MP VAVAFRANGOS": "Lazer",
-    "MERCADOLIVRE MERCADOL": "Compras"
+    "MERCADOLIVRE MERCADOL": "Compras",
+    "E H M F V LTDA VINHEDO BRA": "Mercado"
   },
   "transactions": [
     {
@@ -505,7 +506,7 @@
       "value": 80,
       "cartao": "Inter",
       "id": 67,
-      "cat": null
+      "cat": "Mercado"
     },
     {
       "date": "25/08",
