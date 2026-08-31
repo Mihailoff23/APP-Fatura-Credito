@@ -521,6 +521,105 @@
       "cartao": "Inter",
       "id": 69,
       "cat": "Fixos"
+    },
+    {
+      "date": "25/08",
+      "dateISO": "2026-08-25",
+      "desc": "V ALVES ACADEMIA LOUVEIRA",
+      "value": 139.9,
+      "cartao": "Inter",
+      "id": 53,
+      "cat": "Fixos"
+    },
+    {
+      "date": "25/08",
+      "dateISO": "2026-08-25",
+      "desc": "SUPERM ALIANCA LOUVEIRA",
+      "value": 220,
+      "cartao": "Inter",
+      "id": 55,
+      "cat": "Mercado"
+    },
+    {
+      "date": "28/08",
+      "dateISO": "2026-08-28",
+      "desc": "A FAZENDA AGROPECUARIA LOUVEIRA",
+      "value": 91.6,
+      "cartao": "Inter",
+      "id": 57,
+      "cat": "Pet"
+    },
+    {
+      "date": "28/08",
+      "dateISO": "2026-08-28",
+      "desc": "IFD ELIELSO S LOUVEIRA",
+      "value": 119.11,
+      "cartao": "Inter",
+      "id": 59,
+      "cat": null
+    },
+    {
+      "date": "29/08",
+      "dateISO": "2026-08-29",
+      "desc": "MP ADEGADONEGAO OSASCO",
+      "value": 66.5,
+      "cartao": "Inter",
+      "id": 61,
+      "cat": null
+    },
+    {
+      "date": "29/08",
+      "dateISO": "2026-08-29",
+      "desc": "SUPERM ALIANCA LOUVEIRA",
+      "value": 55,
+      "cartao": "Inter",
+      "id": 63,
+      "cat": "Mercado"
+    },
+    {
+      "date": "29/08",
+      "dateISO": "2026-08-29",
+      "desc": "SUPERM ALIANCA LOUVEIRA",
+      "value": 60.42,
+      "cartao": "Inter",
+      "id": 65,
+      "cat": "Mercado"
+    },
+    {
+      "date": "29/08",
+      "dateISO": "2026-08-29",
+      "desc": "SUPERM ALIANCA LOUVEIRA",
+      "value": 34.74,
+      "cartao": "Inter",
+      "id": 67,
+      "cat": "Mercado"
+    },
+    {
+      "date": "30/08",
+      "dateISO": "2026-08-30",
+      "desc": "SUPERM ALIANCA",
+      "value": 44.43,
+      "cartao": "Inter",
+      "id": 69,
+      "cat": "Mercado"
+    },
+    {
+      "date": "30/08",
+      "dateISO": "2026-08-30",
+      "desc": "MP VAVAFRANGOS",
+      "value": 69.95,
+      "cartao": "Inter",
+      "id": 71,
+      "cat": null
+    },
+    {
+      "date": "30/08",
+      "dateISO": "2026-08-30",
+      "desc": "MERCADOLIVRE MERCADOL",
+      "value": 38.39,
+      "cartao": "Inter",
+      "id": 73,
+      "cat": null
     }
   ]
 }
