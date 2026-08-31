@@ -33,7 +33,7 @@
     "AUTO BAN BRA JUNDIAI": "Lazer",
     "V ALVES ACADEMIA": "Fixos",
     "IOF INTERNACIONAL": "Cartão",
-    "SEARA ALIMENTOS LTDA LOUVEIRA BRA": "Lazer",
+    "SEARA ALIMENTOS LTDA LOUVEIRA BRA": "Mercado",
     "IRMAOS BOA JUNDIAI BRA": "Mercado",
     "OXXO ESPORTES VALINHOS BRA": "Mercado",
     "MAFIOSA CERVEJARIA VALINHOS BRA": "Lazer",
@@ -470,7 +470,7 @@
       "value": 41.9,
       "cartao": "Inter",
       "id": 59,
-      "cat": "Lazer"
+      "cat": "Mercado"
     },
     {
       "date": "23/08",
